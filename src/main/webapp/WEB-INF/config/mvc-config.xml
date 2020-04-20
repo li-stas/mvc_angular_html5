@@ -17,10 +17,12 @@
        http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!--Spring security enabled annotations-->
+    <!--Spring Security включены аннотации-->
     <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" jsr250-annotations="enabled"/>
 
     <!-- context:component-scan This tag will scan @Component, @Repository, @Service, @Controller
          and also resolves @Autowired and @Qualifier -->
+    <!--Этот тег будет сканировать ... а также решает-->
     <context:component-scan base-package="ru.javastudy.mvcHtml5Angular.mvc" />
 
     <!--
@@ -29,8 +31,15 @@
         HttpMessageConverter support for @RequestBody method parameters and @ResponseBody method return values
         from @RequestMapping or @ExceptionHandler methods.
      -->
+    <!--
+         mvc:annotation-drivenнастраивает Spring MVC аннотации
+         Поддержка проверки входных данных @Controller с помощью @Valid, если на пути к классам присутствует поставщик JSR-303.
+         Поддержка HttpMessageConverter для параметров метода @RequestBody и возвращаемых значений метода @ResponseBody
+         из методов @RequestMapping или @ExceptionHandler.
+    -->
     <mvc:annotation-driven>
         <!--use int RestController to produce pretty json response-->
+        <!--используйте int RestController для получения симпатичного ответа json-->
         <mvc:message-converters>
             <bean id="jacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true" />
@@ -67,7 +76,11 @@
     <mvc:view-controller path="/login.html" view-name="/form/login"/>
     <mvc:view-controller path="/about.html" view-name="/about/about"/>
     <mvc:view-controller path="/file.html" view-name="/file/file"/>
+
     <mvc:view-controller path="/jdbc.html" view-name="/jdbc/jdbc"/>
+    <mvc:view-controller path="/jdbcrptord01.html" view-name="/jdbc/jdbcrptord01"/>
+    <mvc:view-controller path="/jdbcrpttov01.html" view-name="/jdbc/jdbcrpttov01"/>
+
     <mvc:view-controller path="/email.html" view-name="/email/email"/>
     <mvc:view-controller path="/rest.html" view-name="/rest/rest"/>
     <mvc:view-controller path="/orm.html" view-name="/orm/orm"/>

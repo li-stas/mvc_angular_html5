@@ -4,6 +4,8 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
+<c:url value="/jdbcrptord01.html" var="jdbcrptord01"/>
+<c:url value="/jdbcrpttov01.html" var="jdbcrpttov01"/>
 
 <c:url value="/file.html" var="file"/>
 <c:url value="/jdbc.html" var="jdbc"/>
@@ -77,10 +79,23 @@
                     </li>
                     <li> <a style="color: red;" href="<c:url value="/j_spring_security_logout"/>"><spring:message code="navMenu.logout"/></a> </li>
                 </c:if>
-
-
                 <c:url value="/about.html" var="about"/>
                 <li><a href="${about}"><spring:message code="navMenu.about"/></a></li>
+                <%--добавляет пунк в верхнем меню--%>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="navMenu.accord"/><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%--переменная обявлена выше, которая ссылается на html -странищу.
+                            принажатии ссылки вызывается mvc-config.xml
+                            --%>
+                            <a href="${jdbcrptord01}">Отчет продаж Торговых агентов</a>
+                        </li>
+                        <li>
+                            <a href="${jdbcrpttov01}">Отчет продаж Продукции</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="navMenu.tutorial"/><b class="caret"></b></a>
                     <ul class="dropdown-menu">
