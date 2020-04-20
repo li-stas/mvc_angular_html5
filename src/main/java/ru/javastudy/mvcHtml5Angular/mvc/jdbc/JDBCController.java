@@ -19,8 +19,6 @@ public class JDBCController {
 
     @Autowired JDBCExample jdbcExample;
 
-
-
     @RequestMapping(value = "/jdbcQueryAllUsers", method = RequestMethod.GET)
     public ModelAndView jdbcSelectAllUsers() {
         System.out.println("JDBCController jdbcSelectAllUsers() is called");
