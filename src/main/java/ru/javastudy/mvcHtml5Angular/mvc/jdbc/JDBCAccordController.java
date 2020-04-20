@@ -14,12 +14,19 @@ import java.util.List;
 @Controller
 public class JDBCAccordController {
 
-    @Autowired JDBCExample jdbcExample;
+    @Autowired JDBCAccordExample jdbcAccordExample;
 
     @RequestMapping(value = "/jdbcRptOrd01", method = RequestMethod.GET)
     public ModelAndView jdbcRptOrd01() {
         System.out.println("JDBCAccordController jdbcRptOrd01() is called");
-        List<User> users =  jdbcExample.queryAllUsers();
+        List<User> users =  jdbcAccordExample.queryAllUsers();
         return new ModelAndView("/jdbc/jdbcrptord01", "resultObject", users);
+    }
+
+    @RequestMapping(value = "/jdbcRptTov01", method = RequestMethod.GET)
+    public ModelAndView jdbcRptTov01() {
+        System.out.println("JDBCAccordController jdbcRptTov01() is called");
+        List<User> users =  jdbcAccordExample.queryAllUsers();
+        return new ModelAndView("/jdbc/jdbcrpttov01", "resultObject", users);
     }
 }

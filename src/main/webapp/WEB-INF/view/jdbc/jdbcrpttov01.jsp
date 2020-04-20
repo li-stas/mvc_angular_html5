@@ -6,11 +6,13 @@
 
 <page:template>
     <jsp:body>
-        <c:url value="/jdbcQueryAllUsers" var="jdbcQueryAllUsers" />
+        <c:url value="/jdbcRptTov01" var="jdbcRptTov01" />
+        <%--
         <c:url value="/jdbcInsert" var="jdbcInsert" />
         <c:url value="/jdbcSelectLogs" var="jdbcSelectLogs" />
         <c:url value="/jdbcDelete" var="jdbcDelete" />
         <c:url value="/jdbcUpdate" var="jdbcUpdate" />
+        --%>
 
         <!-- Page Content -->
         <div class="container">
@@ -37,11 +39,13 @@
                     <div class="list-group">
 
                         <a href="index.html" class="list-group-item">Home</a>
-                        <a href="${jdbcQueryAllUsers}" class="list-group-item">get all users</a>
+                        <a href="${jdbcRptTov01}" class="list-group-item">get RptTov01</a>
+                        <%--
                         <a href="${jdbcInsert}/logstring/jdbcTestLogString" class="list-group-item">Jdbc insert</a>
                         <a href="${jdbcSelectLogs}" class="list-group-item">Select all Logs</a>
                         <a href="${jdbcDelete}/user/8" class="list-group-item">Delete User</a>
                         <a href="${jdbcUpdate}/user/username/user@javastudy.ru/enabled/false" class="list-group-item">Update User</a>
+                        --%>
                     </div>
                 </div>
                 <!-- Content Column -->
