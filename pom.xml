@@ -116,6 +116,14 @@
             <version>2.1.5</version>
         </dependency>
 
+        <!-- Oracle database driver -->
+        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
+        <!--https://medium.com/skillhive/spring-boot-spring-data-jpa-and-oracle-database-c4af89f727e0-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0</version>
+        </dependency>
         <!-- HSQLDB embedded database. Встроенная база данных-->
         <dependency>
             <groupId>org.hsqldb</groupId>

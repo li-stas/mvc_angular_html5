@@ -49,10 +49,12 @@
                     <c:if test="${not empty resultObject}">
                         Result:
                         <c:if test="${resultObject == 'true'}">
-                            <font color="green"><b>${resultObject}</b></font>
+                            <%--<font color="green"><b>${resultObject}</b></font>--%>
+                            <span style="color: green; font-weight: bold;">${resultObject}</span>
                         </c:if>
                         <c:if test="${resultObject == 'false'}">
-                            <font color="red"><b>${resultObject}</b></font>
+                            <%--<font color="red"><b>${resultObject}</b></font>--%>
+                            <span style="color: red; font-weight: bold;">${resultObject}</span>
                         </c:if>
                         <c:if test="${resultObject != 'true' and resultObject != 'false'}">
                             <p>${resultObject}</p>

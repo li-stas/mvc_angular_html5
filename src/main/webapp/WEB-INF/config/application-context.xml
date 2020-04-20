@@ -17,14 +17,40 @@
        http://www.springframework.org/schema/task/spring-task.xsd">
 
     <!--find property file. See bean id='dataSource' for example ${jdbc.hsqldb.driverClass}-->
-    <context:property-placeholder location="classpath:util.properties" />
+    <context:property-placeholder location="classpath:util.properties"/>
+
+
+    <!-- Accord XML Bean Definitions -->
+    <bean id="dataAccordSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.oracle.driverClass}"/>
+        <property name="url" value="${jdbc.oracle.url}"/>
+        <property name="username" value="${jdbc.oracle.username}"/>
+        <property name="password" value="${jdbc.oracle.password}"/>
+    </bean>
+
+    <!-- Accord initialize Embedded DataAccordSource. Встроенная база данных -->
+    <!-- https://docs.spring.io/spring/docs/3.0.0.RC2/spring-framework-reference/html/ch12s09.html -->
+    <!--
+    <jdbc:initialize-database data-source="dataAccordSource">
+        <jdbc:script location="classpath:ao_dbschema.sql"/>
+        <jdbc:script location="classpath:ao_add_user.sql"/>
+        <jdbc:script location="classpath:ao_add_kgp.sql"/>
+        <jdbc:script location="classpath:ao_add_kpl.sql"/>
+        <jdbc:script location="classpath:ao_add_rs1.sql"/>
+        <jdbc:script location="classpath:ao_add_rs2.sql"/>
+        <jdbc:script location="classpath:ao_add_s_tag.sql"/>
+        <jdbc:script location="classpath:ao_add_stagtm.sql"/>
+        <jdbc:script location="classpath:ao_add_tmesto.sql"/>
+        <jdbc:script location="classpath:ao_add_tov.sql"/>
+    </jdbc:initialize-database>
+    -->
 
     <!-- XML Bean Definitions -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.hsqldb.driverClass}" />
-        <property name="url" value="${jdbc.hsqldb.url}" />
-        <property name="username" value="${jdbc.hsqldb.username}" />
-        <property name="password" value="${jdbc.hsqldb.password}" />
+        <property name="driverClassName" value="${jdbc.hsqldb.driverClass}"/>
+        <property name="url" value="${jdbc.hsqldb.url}"/>
+        <property name="username" value="${jdbc.hsqldb.username}"/>
+        <property name="password" value="${jdbc.hsqldb.password}"/>
     </bean>
 
     <!-- initialize Embedded DataSource. Встроенная база данных-->
@@ -60,19 +86,19 @@
     <!--Do not forget activate @Transactional JPA annotation with <annotation-driven/>-->
     <!-- JPA Persistence Context and EntityManager configuration -->
     <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <!--packagesToScan - search Entity and mapping them -->
         <property name="packagesToScan">
-        <list>
-            <value>ru.javastudy.mvcHtml5Angular.mvc.bean</value>
-            <value>ru.javastudy.mvcHtml5Angular.mvc.rest.model</value>
-        </list>
+            <list>
+                <value>ru.javastudy.mvcHtml5Angular.mvc.bean</value>
+                <value>ru.javastudy.mvcHtml5Angular.mvc.rest.model</value>
+            </list>
         </property>
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" >
-                <property name="generateDdl" value="true" />
-                <property name="showSql" value="true" />
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"/>
+                <property name="showSql" value="true"/>
             </bean>
         </property>
         <property name="jpaProperties">
@@ -87,7 +113,7 @@
 
     <!-- Automatic Transaction Participation-->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <!--not uses but could autowired in JDBCExample bean-->
@@ -101,46 +127,46 @@
 
     <!-- Quartz simple trigger -->
     <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
-        <property name="jobDetail" ref="simpleQuartzJob" />
-        <property name="repeatInterval" value="1000" />
-        <property name="startDelay" value="1000" />
+        <property name="jobDetail" ref="simpleQuartzJob"/>
+        <property name="repeatInterval" value="1000"/>
+        <property name="startDelay" value="1000"/>
     </bean>
     <!-- Quartz cron trigger -->
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="quartzCronJob"/>
-        <property name="cronExpression" value="0/30 * * * * ?" />
+        <property name="cronExpression" value="0/30 * * * * ?"/>
         <!-- every 30 seconds (seconds, minutes, hours, day of month, month, day of week, year(optional)) -->
     </bean>
 
     <!-- Quartz job -->
     <bean id="simpleQuartzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="simpleQuartzTask" />
-        <property name="targetMethod" value="simpleTaskMethod" />
+        <property name="targetObject" ref="simpleQuartzTask"/>
+        <property name="targetMethod" value="simpleTaskMethod"/>
     </bean>
     <!-- Quartz cron job -->
     <bean id="quartzCronJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="cronQuartzTask" />
-        <property name="targetMethod" value="cronTaskMethod" />
+        <property name="targetObject" ref="cronQuartzTask"/>
+        <property name="targetMethod" value="cronTaskMethod"/>
     </bean>
 
     <!-- Quartz simple task -->
-    <bean id="simpleQuartzTask" class="ru.javastudy.mvcHtml5Angular.mvc.quartz.QuartzTask" />
+    <bean id="simpleQuartzTask" class="ru.javastudy.mvcHtml5Angular.mvc.quartz.QuartzTask"/>
 
     <!-- Quartz cron task -->
-    <bean id="cronQuartzTask" class="ru.javastudy.mvcHtml5Angular.mvc.quartz.CronQuartzTask" />
+    <bean id="cronQuartzTask" class="ru.javastudy.mvcHtml5Angular.mvc.quartz.CronQuartzTask"/>
 
     <!-- Quartz Scheduler -->
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="jobDetails">
             <list>
-                <ref bean="simpleQuartzJob" />
-                <ref bean="quartzCronJob" />
+                <ref bean="simpleQuartzJob"/>
+                <ref bean="quartzCronJob"/>
             </list>
         </property>
         <property name="triggers">
             <list>
-                <ref bean="simpleTrigger" />
-                <ref bean="cronTrigger" />
+                <ref bean="simpleTrigger"/>
+                <ref bean="cronTrigger"/>
             </list>
         </property>
     </bean>
