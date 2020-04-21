@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import ru.javastudy.mvcHtml5Angular.mvc.bean.DBLog;
 import ru.javastudy.mvcHtml5Angular.mvc.bean.User;
 
-//import javax.annotation.PostConstruct;
+
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.Connection;

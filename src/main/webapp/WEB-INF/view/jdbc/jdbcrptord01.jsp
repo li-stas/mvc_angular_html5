@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags" %>
 
 <page:template>
     <jsp:body>
         <%--значение в контролере и имя переманной в здесь в мен--%>
-        <c:url value="/jdbcRptOrd01" var="jdbcRptOrd01" />
+        <c:url value="/jdbcRptOrd01" var="jdbcRptOrd01"/>
         <%--
         <c:url value="/jdbcInsert" var="jdbcInsert" />
         <c:url value="/jdbcSelectLogs" var="jdbcSelectLogs" />
@@ -41,18 +41,41 @@
 
                         <a href="index.html" class="list-group-item">Home</a>
                         <a href="${jdbcRptOrd01}" class="list-group-item">get RptOrd01</a>
-                        <%--
-                        <a href="${jdbcInsert}/logstring/jdbcTestLogString" class="list-group-item">Jdbc insert</a>
-                        <a href="${jdbcSelectLogs}" class="list-group-item">Select all Logs</a>
-                        <a href="${jdbcDelete}/user/8" class="list-group-item">Delete User</a>
-                        <a href="${jdbcUpdate}/user/username/user@javastudy.ru/enabled/false" class="list-group-item">Update User</a>
-                        --%>
+                            <%--
+                            <a href="${jdbcInsert}/logstring/jdbcTestLogString" class="list-group-item">Jdbc insert</a>
+                            <a href="${jdbcSelectLogs}" class="list-group-item">Select all Logs</a>
+                            <a href="${jdbcDelete}/user/8" class="list-group-item">Delete User</a>
+                            <a href="${jdbcUpdate}/user/username/user@javastudy.ru/enabled/false" class="list-group-item">Update User</a>
+                            --%>
                     </div>
                 </div>
                 <!-- Content Column -->
                 <div class="col-md-9">
                     <c:if test="${not empty resultObject}">
                         Result:
+                        <%--<jsp:include page="viewtable.jsp"></jsp:include>--%>
+                        <%-- <%@include file="viewtable.jsp"%> --%>
+                        <table  border="1" cellpadding="5" cellspacing="5">
+                            <tr>
+                                <c:forEach var="cStr" items="${aHead}">
+                                    <td>${cStr}</td>
+                                </c:forEach>
+                            </tr>
+                            <c:if test="${not empty aRecList}">
+                                <c:forEach var="aRec" items="${aRecList}">
+                                    <tr>
+                                        <c:forEach var="cStr" items="${aRec}">
+                                            <td>${cStr}</td>
+                                        </c:forEach>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty aRecList}">
+                                <tr><td>Нет еще данных!</td></tr>
+                            </c:if>
+                        </table>
+
+
                         <c:if test="${resultObject == 'true'}">
                             <%--<font color="green"><b>${resultObject}</b></font>--%>
                             <span style="color: green; font-weight: bold;">${resultObject}</span>
