@@ -168,7 +168,7 @@ public class JDBCAccordDAO {
             }
         });
         this.noOfRecords = aMaxRecNo.get(0);
-        System.out.println("aRecList = " + aRecList.toString());
+        //System.out.println("aRecList = " + aRecList.toString());
         return aRecList;
     }
 

@@ -6,7 +6,7 @@
 
 <page:template>
     <jsp:body>
-        <c:url value="/jdbcRptTov01" var="jdbcRptTov01" />
+        <c:url value="/rpttov01.do" var="jdbcRptTov01" />
         <%--
         <c:url value="/jdbcInsert" var="jdbcInsert" />
         <c:url value="/jdbcSelectLogs" var="jdbcSelectLogs" />
@@ -51,7 +51,54 @@
                 <!-- Content Column -->
                 <div class="col-md-9">
                     <c:if test="${not empty resultObject}">
-                        Result:
+                        Result->: (${currentPage}/${noOfPages})
+                        <table  border="1" cellpadding="5" cellspacing="5">
+                            <tr>
+                                <c:forEach var="cStr" items="${aHead}">
+                                    <td>${cStr}</td>
+                                </c:forEach>
+                            </tr>
+                            <c:if test="${not empty aRecList}">
+                                <c:forEach var="aRec" items="${aRecList}">
+                                    <tr>
+                                        <c:forEach var="cStr" items="${aRec}">
+                                            <td>${cStr}</td>
+                                        </c:forEach>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty aRecList}">
+                                <tr><td>Нет еще данных!</td></tr>
+                            </c:if>
+                        </table>
+
+                        <%--For displaying Previous link except for the 1st page --%>
+                        <c:if test="${currentPage != 1}">
+                            <td><a href="rpttov01.do?page=${currentPage - 1}">Previous</a></td>
+                        </c:if>
+
+                        <%--For displaying Page numbers.
+                        The when condition does not display a link for the current page--%>
+                        <table border="1" cellpadding="5" cellspacing="5">
+                            <tr>
+                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                    <c:choose>
+                                        <c:when test="${currentPage eq i}">
+                                            <td>${i}</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><a href="rpttov01.do?page=${i}">${i}</a></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </tr>
+                        </table>
+
+                        <%--For displaying Next link --%>
+                        <c:if test="${currentPage lt noOfPages}">
+                            <td><a href="rpttov01.do?page=${currentPage + 1}">Next</a></td>
+                        </c:if>
+
                         <c:if test="${resultObject == 'true'}">
                             <%--<font color="green"><b>${resultObject}</b></font>--%>
                             <span style="color: green; font-weight: bold;">${resultObject}</span>
