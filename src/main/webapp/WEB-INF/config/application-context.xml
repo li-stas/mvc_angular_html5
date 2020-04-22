@@ -30,8 +30,10 @@
 
     <!-- Accord initialize Embedded DataAccordSource. Встроенная база данных -->
     <!-- https://docs.spring.io/spring/docs/3.0.0.RC2/spring-framework-reference/html/ch12s09.html -->
+
     <!--
     <jdbc:initialize-database data-source="dataAccordSource">
+        <jdbc:script location="classpath:ao_cnt_tbl.sql"/>
         <jdbc:script location="classpath:ao_dbschema.sql"/>
         <jdbc:script location="classpath:ao_add_user.sql"/>
         <jdbc:script location="classpath:ao_add_kgp.sql"/>
@@ -44,6 +46,7 @@
         <jdbc:script location="classpath:ao_add_tov.sql"/>
     </jdbc:initialize-database>
     -->
+
 
     <!-- XML Bean Definitions -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

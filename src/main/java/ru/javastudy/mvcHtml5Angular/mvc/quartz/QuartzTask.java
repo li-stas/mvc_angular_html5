@@ -3,6 +3,8 @@ package ru.javastudy.mvcHtml5Angular.mvc.quartz;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Calendar;
+
 /**
  * look application-context.xml
  * 1. simpleTrigger
@@ -17,7 +19,7 @@ public class QuartzTask {
     public void simpleTaskMethod() {
 //		you can log here to database with simpletrigger
 //        logger.info("Test Simple Quartz Time: " + Calendar.getInstance().getTime());
-//        System.out.println("Test Simple Quartz Time: " + Calendar.getInstance().getTime());
+       //System.out.println("Test Simple Quartz Time: " + Calendar.getInstance().getTime());
     }
 
 }
