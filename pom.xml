@@ -39,7 +39,7 @@
         <spring-framework.data.version>1.9.1.RELEASE</spring-framework.data.version>
 
         <!-- Quartz scheduling framework -->
-        <quartz.scheduling.version>2.2.1</quartz.scheduling.version>
+        <quartz.scheduling.version>2.3.2</quartz.scheduling.version>
 
         <!-- Spring Security -->
         <spring-security.version>4.0.4.RELEASE</spring-security.version>
