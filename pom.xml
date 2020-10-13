@@ -21,7 +21,7 @@
         <spring-framework.version>4.2.4.RELEASE</spring-framework.version>
 
         <!-- JUnit test -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
 
         <!-- Logging -->
         <!--logback - improved version of log4j-->
